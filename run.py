@@ -5,7 +5,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 oled_reset = digitalio.DigitalInOut(board.D4)
 i2c = board.I2C()
-oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c, addr=0x3d, reset=oled_reset)
+oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c, #addr=0x3d, 
+                                    reset=oled_reset)
 
 # Clear display.
 oled.fill(0)
