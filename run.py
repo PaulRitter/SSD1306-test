@@ -49,7 +49,7 @@ def draw(oled, current, target, unit):
     #draw progress rectangle
     progress = current/target
     draw.rectangle(
-        (BORDER+1, BORDER+1, oled.width * progress - BORDER - 2, oled.height - BORDER - 2),
+        (BORDER+1, BORDER+1, max(oled.width * progress - BORDER - 2, BORDER+1), oled.height - BORDER - 2),
         outline=255,
         fill=0
     )
