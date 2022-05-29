@@ -7,7 +7,7 @@ import time
 BORDER = 5
 
 units = {
-    "liter": ["mL", "L", "kL"]
+    "liter": ["mL", "L", "kL"],
     "gram": ["mg", "g", "kg"]
 }
 
