@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import time
 
 BORDER = 5
-BAR = 3
+BAR = 2
 
 units = {
     "liter": ["mL", "L", "kL"],
@@ -54,7 +54,7 @@ def draw(oled, current, target, unit):
     draw.rectangle(
         (BORDER+BAR, BORDER+BAR, max(oled.width * progress - BORDER - 1 - BAR, BORDER+BAR), oled.height - BORDER - 1 - BAR),
         outline=255,
-        fill=0
+        fill=255
     )
 
     # Load default font.
