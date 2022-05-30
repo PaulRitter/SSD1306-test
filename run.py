@@ -87,8 +87,8 @@ try:
     while True:
         print(f"{current}/{target}")
         draw(oled, current, target, "gram")
-        time.sleep(0.5)
-        current += target / 4
+        time.sleep(0.1)
+        current += target / 10
         if current > target:
             current = 0
 except KeyboardInterrupt:
