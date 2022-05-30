@@ -55,7 +55,7 @@ def draw(oled, current, target, unit):
         draw.rectangle(
             (BORDER+BAR, BORDER+BAR, max(oled.width * progress - BORDER - 1 - BAR, BORDER+BAR), oled.height - BORDER - 1 - BAR),
             outline=255,
-            fill=255
+            fill=0
         )
 
     # Load default font.
