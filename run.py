@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import time
 
 BORDER = 5
+BAR = 3
 
 units = {
     "liter": ["mL", "L", "kL"],
@@ -51,7 +52,7 @@ def draw(oled, current, target, unit):
     #draw progress rectangle
     progress = current/target
     draw.rectangle(
-        (BORDER+1, BORDER+1, max(oled.width * progress - BORDER - 2, BORDER+1), oled.height - BORDER - 2),
+        (BORDER+BAR, BORDER+BAR, max(oled.width * progress - BORDER - 1 - BAR, BORDER+BAR), oled.height - BORDER - 1 - BAR),
         outline=255,
         fill=0
     )
