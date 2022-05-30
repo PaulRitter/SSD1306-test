@@ -16,7 +16,13 @@ def init_display():
     i2c = board.I2C()
     oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c, #addr=0x3d, 
                                         reset=oled_reset)
+    clear(oled)
     return oled
+
+def clear(oled):
+    # Clear display.
+    oled.fill(0)
+    oled.show()
 
 def draw(oled, current, target, unit):
     if unit not in units:
@@ -24,10 +30,6 @@ def draw(oled, current, target, unit):
     
     if current > target:
         raise Exception("Current bigger than target")
-    
-    # Clear display.
-    oled.fill(0)
-    oled.show()
 
     # Create blank image for drawing.
     # Make sure to create image with mode '1' for 1-bit color.
@@ -89,5 +91,4 @@ try:
             current = 0
 except KeyboardInterrupt:
     print("Shutting down.")
-    oled.fill(0)
-    oled.show()
+    clear(oled)
