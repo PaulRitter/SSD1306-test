@@ -51,11 +51,12 @@ def draw(oled, current, target, unit):
     
     #draw progress rectangle
     progress = current/target
-    draw.rectangle(
-        (BORDER+BAR, BORDER+BAR, max(oled.width * progress - BORDER - 1 - BAR, BORDER+BAR), oled.height - BORDER - 1 - BAR),
-        outline=255,
-        fill=255
-    )
+    if progress > 0.01:
+        draw.rectangle(
+            (BORDER+BAR, BORDER+BAR, max(oled.width * progress - BORDER - 1 - BAR, BORDER+BAR), oled.height - BORDER - 1 - BAR),
+            outline=255,
+            fill=255
+        )
 
     # Load default font.
     font = ImageFont.load_default()
