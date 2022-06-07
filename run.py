@@ -3,6 +3,8 @@ import adafruit_ssd1306
 import digitalio
 from PIL import Image, ImageDraw, ImageFont
 import time
+import RPi.GPIO as GPIO
+from hx711 import HX711
 
 BORDER = 5
 BAR = 2
@@ -79,18 +81,21 @@ def draw(oled, current, target, unit):
     # Display image
     oled.image(image)
     oled.show()
-    
+
+hx = HX711(5, 6)
+hx.set_reading_format("MSB", "MSB")
+hx.set_reference_unit(1)
+hx.reset()
+hx.tare()
 oled = init_display()
 try:
-    current = 0
     target = 1000
     while True:
+        current = hx.get_weight(5)
         print(f"{current}/{target}")
         draw(oled, current, target, "gram")
         time.sleep(0.1)
-        current += target / 10
-        if current > target:
-            current = 0
 except KeyboardInterrupt:
     print("Shutting down.")
     clear(oled)
+    GPIO.cleanup()
