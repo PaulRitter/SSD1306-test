@@ -69,6 +69,7 @@ def draw(oled, current, target, unit):
     # Draw Some Text
     val = current
     idx = 0
+    print(val)
     while val >= 1000 and idx < 2:
         val = val/1000
         print(idx, val)
