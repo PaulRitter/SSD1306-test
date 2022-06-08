@@ -64,8 +64,8 @@ class HX711:
         unsignedValue = 0
         for i in range(0, self.bitsToRead):
             GPIO.output(self.PD_SCK, True)
-            GPIO.output(self.PD_SCK, False)
             bitValue = GPIO.input(self.DOUT)
+            GPIO.output(self.PD_SCK, False)
             unsignedValue = unsignedValue << 1
             unsignedValue = unsignedValue | bitValue
 
