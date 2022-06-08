@@ -96,7 +96,7 @@ oled = init_display()
 try:
     target = 1000
     while True:
-        current = int(hx.get_weight(20)+50000)
+        current = int(hx.get_weight(20))
         print(f"{current}/{target}")
         draw(oled, current, target, "gram")
         time.sleep(0.001)
