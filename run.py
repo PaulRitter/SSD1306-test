@@ -88,17 +88,21 @@ def draw(oled, current, target, unit):
     oled.show()
 
 hx = HX711(5, 6)
-hx.set_reading_format("LSB", "MSB")
+modes = ["LSB", "MSB"]
 hx.set_reference_unit(1)
 hx.reset()
 hx.tare()
-oled = init_display()
+#oled = init_display()
 try:
     target = 1000
     while True:
         current = int(hx.get_weight(5))
         print(f"{current}/{target}")
-        draw(oled, current, target, "gram")
+        for byM in modes:
+            for biM in modes:
+                hx.set_reading_format(byM, biM)
+                print(byM, biM, hx.get_weight(5))
+        #draw(oled, current, target, "gram")
         time.sleep(0.001)
 except KeyboardInterrupt:
     print("Shutting down.")
