@@ -210,6 +210,7 @@ hx.tare()
 vals = list()
 for x in range(1000):
     vals.append(hx.getWeight())
+    time.sleep(0.001)
 print("mean", statistics.mean(vals))
 print("median", statistics.median(vals))
 print("stdev", statistics.stdev(vals))
