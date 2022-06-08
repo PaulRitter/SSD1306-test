@@ -88,7 +88,7 @@ def draw(oled, current, target, unit):
     oled.show()
 
 hx = HX711(5, 6)
-hx.set_reading_format("MSB", "MSB")
+hx.set_reading_format("LSB", "MSB")
 hx.set_reference_unit(1)
 hx.reset()
 hx.tare()
@@ -96,7 +96,7 @@ oled = init_display()
 try:
     target = 1000
     while True:
-        current = int(hx.get_weight(20))
+        current = int(hx.get_weight(5))
         print(f"{current}/{target}")
         draw(oled, current, target, "gram")
         time.sleep(0.001)
