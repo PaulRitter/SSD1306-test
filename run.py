@@ -206,6 +206,16 @@ hx = HX711(5, 6)
 hx.reset()
 hx.tare()
 #oled = init_display()
+
+vals = list()
+for x in range(1000):
+    vals.append(hx.getWeight())
+print("mean", statistics.mean(vals))
+print("median", statistics.median(vals))
+print("stdev", statistics.stdev(vals))
+print("var", statistics.variance(vals))
+
+return
 try:
     target = 1000
     while True:
