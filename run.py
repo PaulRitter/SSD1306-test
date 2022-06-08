@@ -215,7 +215,7 @@ print("median", statistics.median(vals))
 print("stdev", statistics.stdev(vals))
 print("var", statistics.variance(vals))
 
-return
+exit(0)
 try:
     target = 1000
     while True:
