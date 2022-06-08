@@ -1,9 +1,11 @@
 import board
+# pip3 install adafruit-circuitpython-ssd1306
 import adafruit_ssd1306
 import digitalio
 from PIL import Image, ImageDraw, ImageFont
 import time
 import RPi.GPIO as GPIO
+# https://github.com/tatobari/hx711py
 from hx711 import HX711
 
 BORDER = 5
@@ -32,7 +34,8 @@ def draw(oled, current, target, unit):
         raise Exception("Unsupported unit used")
     
     if current > target:
-        raise Exception("Current bigger than target")
+        current = target
+        #raise Exception("Current bigger than target")
 
     # Create blank image for drawing.
     # Make sure to create image with mode '1' for 1-bit color.
