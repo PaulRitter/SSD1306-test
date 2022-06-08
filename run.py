@@ -64,8 +64,8 @@ class HX711:
         unsignedValue = 0
         for i in range(0, self.bitsToRead):
             GPIO.output(self.PD_SCK, True)
-            bitValue = GPIO.input(self.DOUT)
             GPIO.output(self.PD_SCK, False)
+            bitValue = GPIO.input(self.DOUT)
             unsignedValue = unsignedValue << 1
             unsignedValue = unsignedValue | bitValue
 
@@ -207,16 +207,13 @@ hx.reset()
 hx.tare()
 #oled = init_display()
 
-vals = list()
+keep = 5
+hist = list()
 for x in range(1000):
     val = hx.getWeight()
-    print(val)
-    vals.append(val)
-    time.sleep(0.001)
-print("mean", statistics.mean(vals))
-print("median", statistics.median(vals))
-print("stdev", statistics.stdev(vals))
-print("var", statistics.variance(vals))
+    hist.append(val)
+    print(statistics.median(hist))
+    hist = hist[-keep:]
 
 exit(0)
 try:
