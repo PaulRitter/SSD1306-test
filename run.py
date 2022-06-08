@@ -71,6 +71,7 @@ def draw(oled, current, target, unit):
     idx = 0
     while val >= 1000 and idx < 2:
         val = val/1000
+        print(idx, val)
         idx += 1
     text = f"{val}{units[unit][idx]}"
     (font_width, font_height) = font.getsize(text)
