@@ -97,7 +97,7 @@ try:
         current = hx.get_weight(5)
         print(f"{current}/{target}")
         draw(oled, current, target, "gram")
-        time.sleep(0.1)
+        time.sleep(0.01)
 except KeyboardInterrupt:
     print("Shutting down.")
     clear(oled)
