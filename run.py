@@ -208,8 +208,10 @@ hx.tare()
 #oled = init_display()
 
 vals = list()
-for x in tqdm.tqdm(range(1000)):
-    vals.append(hx.getWeight())
+for x in range(1000):
+    val = hx.getWeight()
+    print(val)
+    vals.append(val)
     time.sleep(0.001)
 print("mean", statistics.mean(vals))
 print("median", statistics.median(vals))
