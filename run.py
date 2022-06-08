@@ -94,10 +94,10 @@ oled = init_display()
 try:
     target = 1000
     while True:
-        current = float(round(hx.get_weight(5)/1000,2))
+        current = int(hx.get_weight(5))
         print(f"{current}/{target}")
         draw(oled, current, target, "gram")
-        time.sleep(0.01)
+        time.sleep(0.001)
 except KeyboardInterrupt:
     print("Shutting down.")
     clear(oled)
