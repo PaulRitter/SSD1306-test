@@ -7,7 +7,7 @@ import time
 import RPi.GPIO as GPIO
 # https://github.com/tatobari/hx711py
 #from hx711 import HX711
-
+import tqdm
 import statistics
 
 #from https://github.com/dcrystalj/hx711py3/blob/master/hx711.py
@@ -208,7 +208,7 @@ hx.tare()
 #oled = init_display()
 
 vals = list()
-for x in range(1000):
+for x in tqdm.tqdm(range(1000)):
     vals.append(hx.getWeight())
     time.sleep(0.001)
 print("mean", statistics.mean(vals))
