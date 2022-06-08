@@ -33,8 +33,7 @@ def draw(oled, current, target, unit):
     if unit not in units:
         raise Exception("Unsupported unit used")
     
-    if current > target:
-        current = target
+    #if current > target:
         #raise Exception("Current bigger than target")
 
     # Create blank image for drawing.
@@ -56,6 +55,8 @@ def draw(oled, current, target, unit):
     
     #draw progress rectangle
     progress = current/target
+    if progress > 1:
+        progress = 1
     if progress > 0.01:
         draw.rectangle(
             (BORDER+BAR, BORDER+BAR, max(oled.width * progress - BORDER - 1 - BAR, BORDER+BAR), oled.height - BORDER - 1 - BAR),
@@ -69,7 +70,6 @@ def draw(oled, current, target, unit):
     # Draw Some Text
     val = current
     idx = 0
-    print(val)
     while val >= 1000 and idx < 2:
         val = val/1000
         print(idx, val)
