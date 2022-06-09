@@ -10,6 +10,8 @@ import RPi.GPIO as GPIO
 import tqdm
 import statistics
 
+import argparse
+
 #from https://github.com/dcrystalj/hx711py3/blob/master/hx711.py
 class HX711:
     def __init__(self, dout=5, pd_sck=6, gain=128, bitsToRead=24):
@@ -200,37 +202,44 @@ def draw(oled, current, target, unit):
     oled.image(image)
     oled.show()
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-t", type=int, default=1000)
+
+args = parser.parse_args()
+
 hx = HX711(5, 6)
 #hx.set_reading_format("MSB", "MSB")
 #hx.set_reference_unit(1)
 hx.reset()
 hx.tare()
-#oled = init_display()
+oled = init_display()
 
-vals = list()
+#vals = list()
 keep = 5
 hist = list()
-for x in range(1000):
-    val = hx.getWeight()
-    hist.append(val)
-    corrected_val = statistics.median(hist)
-    print(corrected_val)
-    vals.append(corrected_val)
-    hist = hist[-keep:]
-print("mean", statistics.mean(vals))
-print("median", statistics.median(vals))
-print("stdev", statistics.stdev(vals))
-print("var", statistics.variance(vals))
+#for x in range(1000):
+#    val = hx.getWeight()
+#    hist.append(val)
+#    corrected_val = statistics.median(hist)
+#    hist = hist[-keep:]
+#    print(corrected_val)
+#    vals.append(corrected_val)
+#print("mean", statistics.mean(vals))
+#print("median", statistics.median(vals))
+#print("stdev", statistics.stdev(vals))
+#print("var", statistics.variance(vals))
 
-exit(0)
+#exit(0)
 try:
-    target = 1000
     while True:
-        current = hx.getWeight() #int(hx.get_weight(5))
-        print(f"{current}/{target}")
-        #draw(oled, current, target, "gram")
+        val = hx.getWeight()
+        hist.append(val)
+        current = statistics.median(hist)
+        hist = hist[-keep:]
+        print(f"{current}/{args.target}")
+        draw(oled, current, target, "gram")
         time.sleep(0.001)
 except KeyboardInterrupt:
     print("Shutting down.")
-    #clear(oled)
+    clear(oled)
     GPIO.cleanup()
