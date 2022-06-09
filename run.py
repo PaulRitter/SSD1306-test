@@ -195,6 +195,7 @@ def draw(oled, current, target, unit):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-t", type=int, default=1000)
+parser.add_argument("-c", type=float, default=2)
 
 args = parser.parse_args()
 
@@ -225,7 +226,7 @@ try:
     while True:
         val = hx.getWeight()
         hist.append(val)
-        current = round(statistics.median(hist)/1000)
+        current = round(statistics.median(hist)/1000) * args.c
         hist = hist[-keep:]
         print(f"{current}/{args.t}")
         draw(oled, current, args.t, "g")
