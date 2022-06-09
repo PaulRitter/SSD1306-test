@@ -225,6 +225,7 @@ hist = list()
 try:
     while True:
         val = hx.getWeight()
+        print(val)
         hist.append(val)
         current = max(0, round(statistics.median(hist)/1000) * args.c)
         hist = hist[-keep:]
