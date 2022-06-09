@@ -126,11 +126,6 @@ class HX711:
 BORDER = 5
 BAR = 2
 
-units = {
-    "liter": ["mL", "L", "kL"],
-    "gram": ["mg", "g", "kg"]
-}
-
 def init_display():
     oled_reset = digitalio.DigitalInOut(board.D4)
     i2c = board.I2C()
