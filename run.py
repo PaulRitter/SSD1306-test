@@ -226,7 +226,7 @@ try:
     while True:
         val = hx.getWeight()
         hist.append(val)
-        current = round(statistics.median(hist)/1000) * args.c
+        current = max(0, round(statistics.median(hist)/1000) * args.c)
         hist = hist[-keep:]
         print(f"{current}/{args.t}")
         draw(oled, current, args.t, "g")
