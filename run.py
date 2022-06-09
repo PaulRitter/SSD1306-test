@@ -191,6 +191,7 @@ def draw(oled, current, target, unit):
 parser = argparse.ArgumentParser()
 parser.add_argument("-t", type=int, default=1000)
 parser.add_argument("-c", type=float, default=2)
+parser.add_argument("-p", type=float, default=0.001)
 
 args = parser.parse_args()
 
@@ -225,7 +226,7 @@ try:
         hist = hist[-keep:]
         print(f"{current}/{args.t}")
         draw(oled, current, args.t, "g")
-        time.sleep(0.001)
+        time.sleep(args.p)
 except KeyboardInterrupt:
     print("Shutting down.")
     clear(oled)
