@@ -68,7 +68,7 @@ class HX711:
             GPIO.output(self.PD_SCK, True)
             bitValue = GPIO.input(self.DOUT)
             GPIO.output(self.PD_SCK, False)
-            unsignedValue = unsignedValue << 1
+            #unsignedValue = unsignedValue << 1
             unsignedValue = unsignedValue | bitValue
 
         # set channel and gain factor for next reading
