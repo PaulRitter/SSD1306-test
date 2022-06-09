@@ -145,9 +145,6 @@ def clear(oled):
     oled.show()
 
 def draw(oled, current, target, unit):
-    if unit not in units:
-        raise Exception("Unsupported unit used")
-    
     #if current > target:
         #raise Exception("Current bigger than target")
 
@@ -182,14 +179,8 @@ def draw(oled, current, target, unit):
     # Load default font.
     font = ImageFont.load_default()
 
-    # Draw Some Text
-    val = current
-    idx = 0
-    while val >= 1000 and idx < 2:
-        val = val/1000
-        print(idx, val)
-        idx += 1
-    text = f"{val}{units[unit][idx]}"
+
+    text = f"{current}{unit}"
     (font_width, font_height) = font.getsize(text)
     draw.text(
         (oled.width // 2 - font_width // 2, oled.height // 2 - font_height // 2),
@@ -234,10 +225,10 @@ try:
     while True:
         val = hx.getWeight()
         hist.append(val)
-        current = round(statistics.median(hist)/1000)*1000
+        current = round(statistics.median(hist)/1000)
         hist = hist[-keep:]
         print(f"{current}/{args.t}")
-        draw(oled, current, args.t, "gram")
+        draw(oled, current, args.t, "g")
         time.sleep(0.001)
 except KeyboardInterrupt:
     print("Shutting down.")
