@@ -232,11 +232,10 @@ hist = list()
 #exit(0)
 try:
     while True:
-        current = round(hx.getWeight()/1000) * 1000
-        #val = hx.getWeight()
-        #hist.append(val)
-        #current = round(statistics.median(hist)/1000)
-        #hist = hist[-keep:]
+        val = hx.getWeight()
+        hist.append(val)
+        current = round(statistics.median(hist)/1000)
+        hist = hist[-keep:]
         print(f"{current}/{args.t}")
         draw(oled, current, args.t, "gram")
         time.sleep(0.001)
