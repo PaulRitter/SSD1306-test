@@ -236,8 +236,8 @@ try:
         hist.append(val)
         current = statistics.median(hist)
         hist = hist[-keep:]
-        print(f"{current}/{args.target}")
-        draw(oled, current, target, "gram")
+        print(f"{current}/{args.t}")
+        draw(oled, current, args.t, "gram")
         time.sleep(0.001)
 except KeyboardInterrupt:
     print("Shutting down.")
