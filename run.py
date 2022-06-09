@@ -234,7 +234,7 @@ try:
     while True:
         val = hx.getWeight()
         hist.append(val)
-        current = statistics.median(hist)
+        current = int(statistics.median(hist))
         hist = hist[-keep:]
         print(f"{current}/{args.t}")
         draw(oled, current, args.t, "gram")
